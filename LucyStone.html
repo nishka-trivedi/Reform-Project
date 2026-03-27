@@ -1,0 +1,2190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucy Stone — Voice of a Revolution</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Josefin+Sans:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --crimson: #6b0f1a;
+            --crimson-mid: #8b1a28;
+            --crimson-lt: #b03040;
+            --cream: #fdf6e8;
+            --cream-dark: #f0e4cc;
+            --cream-deep: #e2d0b0;
+            --slate: #2c3e50;
+            --slate-mid: #3d5166;
+            --ink: #1a1215;
+            --ink-soft: #3a2a2e;
+            --muted: #7a6060;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--cream);
+            color: var(--ink);
+            font-family: 'Crimson Pro', serif;
+            font-size: 18px;
+            line-height: 1.75;
+            overflow-x: hidden;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 200;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 48px;
+            background: rgba(107, 15, 26, 0.97);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        }
+
+        .nav-brand {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--cream);
+            letter-spacing: 0.04em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 0.68rem;
+            font-weight: 300;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: rgba(253, 246, 232, 0.65);
+            text-decoration: none;
+            transition: color 0.25s;
+        }
+
+        .nav-links a:hover {
+            color: var(--cream);
+        }
+
+        /* ── HERO ── */
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding-top: 52px;
+        }
+
+        .hero-left {
+            background: var(--crimson);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 100px 64px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-left::after {
+            content: 'L';
+            position: absolute;
+            right: -30px;
+            bottom: -60px;
+            font-family: 'Playfair Display', serif;
+            font-size: 380px;
+            font-weight: 900;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.04);
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        .hero-eyebrow {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: rgba(253, 246, 232, 0.55);
+            margin-bottom: 22px;
+            opacity: 0;
+            animation: fadeUp 0.8s 0.3s forwards;
+        }
+
+        .hero-name {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3.6rem, 6.5vw, 6rem);
+            font-weight: 900;
+            color: var(--cream);
+            line-height: 0.92;
+            margin-bottom: 6px;
+            opacity: 0;
+            animation: fadeUp 0.8s 0.5s forwards;
+        }
+
+        .hero-name em {
+            font-style: italic;
+            display: block;
+        }
+
+        .hero-dates {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 0.22em;
+            color: rgba(253, 246, 232, 0.4);
+            margin-top: 14px;
+            margin-bottom: 40px;
+            opacity: 0;
+            animation: fadeUp 0.8s 0.7s forwards;
+        }
+
+        .hero-quote-block {
+            border-left: 3px solid rgba(253, 246, 232, 0.3);
+            padding-left: 22px;
+            opacity: 0;
+            animation: fadeUp 0.8s 0.9s forwards;
+        }
+
+        .hero-quote {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--cream-dark);
+            line-height: 1.65;
+        }
+
+        .hero-quote-attr {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 0.64rem;
+            letter-spacing: 0.15em;
+            color: rgba(253, 246, 232, 0.38);
+            margin-top: 10px;
+        }
+
+        .hero-right {
+            background: var(--cream-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 80px 48px;
+        }
+
+        .hero-photo-frame {
+            width: 360px;
+            height: 480px;
+            position: relative;
+        }
+
+        .hero-photo-frame::before {
+            content: '';
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            right: -16px;
+            bottom: -16px;
+            border: 2px solid var(--crimson-lt);
+            z-index: 0;
+            opacity: 0.35;
+        }
+
+        .hero-photo-frame img {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            filter: sepia(15%) contrast(1.06);
+        }
+
+        .hero-photo-label {
+            position: absolute;
+            bottom: -38px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 0.58rem;
+            letter-spacing: 0.18em;
+            color: var(--muted);
+            text-transform: uppercase;
+        }
+
+        .scroll-cue {
+            position: absolute;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            color: var(--muted);
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 0.58rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            animation: bob 2s ease-in-out infinite;
+        }
+
+        .scroll-cue-line {
+            width: 1px;
+            height: 34px;
+            background: linear-gradient(to bottom, var(--crimson-lt), transparent);
+        }
+
+        /* ── SHARED ── */
+        section {
+            padding: 96px 0;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 48px;
+        }
+
+        .section-label {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 0.62rem;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--crimson-lt);
+            margin-bottom: 14px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 3.8vw, 3.2rem);
+            font-weight: 700;
+            line-height: 1.12;
+            color: var(--ink);
+            margin-bottom: 44px;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin: 44px 0;
+        }
+
+        .divider-line {
+            flex: 1;
+            height: 1px;
+            background: var(--cream-deep);
+        }
+
+        .divider-orn {
+            color: var(--crimson);
+            font-size: 1rem;
+        }
+
+        /* ── CONTEXT ── */
+        #context {
+            background: var(--crimson);
+        }
+
+        #context .section-label {
+            color: rgba(253, 246, 232, 0.45);
+        }
+
+        #context .section-title {
+            color: var(--cream);
+        }
+
+        #context>.container>p {
+            color: rgba(253, 246, 232, 0.6);
+            font-size: 1rem;
+            max-width: 640px;
+        }
+
+        .context-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            margin-top: 52px;
+        }
+
+        .ctx-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 36px 28px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            cursor: pointer;
+            transition: background 0.3s, border-color 0.3s;
+        }
+
+        .ctx-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(253, 246, 232, 0.18);
+        }
+
+        .ctx-year {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: rgba(253, 246, 232, 0.1);
+            line-height: 1;
+            margin-bottom: 14px;
+        }
+
+        .ctx-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--cream);
+            margin-bottom: 10px;
+        }
+
+        .ctx-card p {
+            font-size: 0.9rem;
+            color: rgba(253, 246, 232, 0.55);
+            line-height: 1.6;
+        }
+
+        /* ── BIOGRAPHY ── */
+        #biography {
+            background: var(--cream);
+        }
+
+        .bio-grid {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 72px;
+            align-items: start;
+        }
+
+        .bio-photo-wrap {
+            position: sticky;
+            top: 90px;
+        }
+
+        .bio-photo-wrap img {
+            width: 100%;
+            display: block;
+            filter: sepia(15%) contrast(1.07);
+            border: 1px solid var(--cream-deep);
+        }
+
+        .bio-photo-caption {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 0.58rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-top: 10px;
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        .bio-stats {
+            margin-top: 22px;
+        }
+
+        .bio-stat {
+            padding: 13px 0;
+            border-bottom: 1px solid var(--cream-deep);
+        }
+
+        .bio-stat-lbl {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 0.57rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 4px;
+        }
+
+        .bio-stat-val {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 0.95rem;
+            color: var(--ink-soft);
+        }
+
+        .bio-body p {
+            margin-bottom: 22px;
+            font-size: 1.04rem;
+            color: var(--ink-soft);
+        }
+
+        .bio-pull {
+            background: var(--cream-dark);
+            border-left: 4px solid var(--crimson);
+            padding: 22px 26px;
+            margin: 32px 0;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.15rem;
+            color: var(--crimson);
+            line-height: 1.55;
+        }
+
+        .tag {
+            display: inline-block;
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 0.57rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            padding: 3px 9px;
+            border: 1px solid currentColor;
+            margin: 0 6px 6px 0;
+        }
+
+        .tag-r {
+            color: var(--crimson);
+        }
+
+        .tag-s {
+            color: var(--slate);
+        }
+
+        .tag-m {
+            color: var(--muted);
+        }
+
+        /* ── TIMELINE ── */
+        #timeline {
+            background: var(--cream-dark);
+            padding: 96px 0 120px;
+        }
+
+        .timeline-wrap {
+            position: relative;
+            padding: 52px 48px;
+            max-width: 1180px;
+            margin: 0 auto;
+        }
+
+        .tl-spine {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, transparent, var(--crimson) 8%, var(--crimson) 92%, transparent);
+            transform: translateX(-50%);
+        }
+
+        .tl-event {
+            display: grid;
+            grid-template-columns: 1fr 52px 1fr;
+            margin-bottom: 52px;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(18px);
+            transition: all 0.55s ease;
+        }
+
+        .tl-event.visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        .tl-card {
+            background: var(--cream);
+            border: 1px solid var(--cream-deep);
+            padding: 24px 28px;
+            transition: box-shadow 0.3s;
+            box-shadow: 0 2px 16px rgba(107, 15, 26, 0.04);
+        }
+
+        .tl-card:hover {
+            box-shadow: 0 6px 32px rgba(107, 15, 26, 0.12);
+        }
+
+        .tl-card.left::after {
+            content: '';
+            position: absolute;
+            right: -28px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 28px;
+            height: 1px;
+            background: var(--crimson-lt);
+        }
+
+        .tl-card.right::before {
+            content: '';
+            position: absolute;
+            left: -28px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 28px;
+            height: 1px;
+            background: var(--crimson-lt);
+        }
+
+        .tl-card {
+            position: relative;
+        }
+
+        .tl-year {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            color: var(--crimson);
+            margin-bottom: 6px;
+        }
+
+        .tl-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--ink);
+        }
+
+        .tl-desc {
+            font-size: 0.88rem;
+            color: var(--ink-soft);
+            line-height: 1.55;
+        }
+
+        .tl-dot {
+            width: 14px;
+            height: 14px;
+            background: var(--crimson);
+            border-radius: 50%;
+            border: 3px solid var(--cream-dark);
+            box-shadow: 0 0 0 2px var(--crimson);
+            justify-self: center;
+            z-index: 1;
+        }
+
+        .tl-dot.slate {
+            background: var(--slate);
+            box-shadow: 0 0 0 2px var(--slate), 0 0 16px rgba(44, 62, 80, 0.4);
+        }
+
+        /* ── PRIMARY SOURCE ── */
+        #primary-source {
+            background: var(--slate);
+            color: var(--cream);
+        }
+
+        #primary-source .section-label {
+            color: rgba(253, 246, 232, 0.4);
+        }
+
+        #primary-source .section-title {
+            color: var(--cream);
+            font-size: 2rem;
+            margin-bottom: 22px;
+        }
+
+        .ps-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 72px;
+            align-items: start;
+        }
+
+        .ps-doc {
+            background: var(--cream);
+            color: var(--ink);
+            padding: 44px;
+            box-shadow: 6px 6px 0 rgba(107, 15, 26, 0.28);
+        }
+
+        .ps-doc-head {
+            border-bottom: 2px solid var(--crimson);
+            padding-bottom: 20px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .ps-doc-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .ps-doc-sub {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 0.58rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .ps-doc-body {
+            font-size: 0.96rem;
+            line-height: 1.78;
+            color: var(--ink-soft);
+        }
+
+        .ps-doc-body p {
+            margin-bottom: 14px;
+        }
+
+        .hi-passage {
+            background: rgba(107, 15, 26, 0.07);
+            border-left: 3px solid var(--crimson);
+            padding: 10px 14px;
+            margin: 16px 0;
+            cursor: pointer;
+            transition: background 0.25s;
+        }
+
+        .hi-passage:hover {
+            background: rgba(107, 15, 26, 0.14);
+        }
+
+        .annotation {
+            display: none;
+            background: var(--crimson);
+            color: white;
+            padding: 12px 16px;
+            font-size: 0.82rem;
+            font-family: 'Josefin Sans', sans-serif;
+            line-height: 1.5;
+            margin-top: 6px;
+        }
+
+        .annotation.open {
+            display: block;
+        }
+
+        .ps-analysis p {
+            color: rgba(253, 246, 232, 0.65);
+            margin-bottom: 18px;
+            font-size: 0.97rem;
+        }
+
+        .ps-q {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(253, 246, 232, 0.1);
+            padding: 20px 22px;
+            margin-top: 18px;
+            cursor: pointer;
+            transition: all 0.25s;
+        }
+
+        .ps-q:hover {
+            background: rgba(255, 255, 255, 0.09);
+            border-color: rgba(253, 246, 232, 0.22);
+        }
+
+        .ps-qt {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 0.97rem;
+            color: rgba(253, 246, 232, 0.8);
+        }
+
+        .ps-qa {
+            font-size: 0.88rem;
+            color: rgba(253, 246, 232, 0.55);
+            margin-top: 14px;
+            display: none;
+            line-height: 1.6;
+        }
+
+        .ps-qa.open {
+            display: block;
+        }
+
+        .ps-photo-wrap {
+            margin-top: 36px;
+        }
+
+        .ps-photo-wrap img {
+            width: 100%;
+            display: block;
+            filter: sepia(20%) contrast(1.05);
+            border: 1px solid rgba(253, 246, 232, 0.08);
+        }
+
+        .ps-photo-cap {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 0.57rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(253, 246, 232, 0.32);
+            margin-top: 8px;
+        }
+
+        /* ── OBSTACLES ── */
+        #obstacles {
+            background: var(--cream-dark);
+        }
+
+        .obs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+            margin-top: 52px;
+        }
+
+        .obs-item {
+            background: var(--cream);
+            padding: 38px;
+            border-top: 4px solid var(--crimson);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .obs-item::before {
+            content: attr(data-n);
+            position: absolute;
+            top: -20px;
+            right: 14px;
+            font-family: 'Playfair Display', serif;
+            font-size: 7rem;
+            font-weight: 900;
+            color: rgba(107, 15, 26, 0.05);
+            line-height: 1;
+        }
+
+        .obs-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--crimson);
+            margin-bottom: 14px;
+        }
+
+        .obs-text {
+            font-size: 0.95rem;
+            color: var(--ink-soft);
+            line-height: 1.65;
+        }
+
+        /* ── STRATEGIES ── */
+        #strategies {
+            background: var(--cream);
+        }
+
+        .strat-tabs {
+            display: flex;
+            border-bottom: 2px solid var(--cream-deep);
+            margin-bottom: 52px;
+            flex-wrap: wrap;
+        }
+
+        .strat-tab {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 0.67rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            padding: 14px 26px;
+            cursor: pointer;
+            color: var(--muted);
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+            transition: all 0.25s;
+            background: none;
+            border-left: none;
+            border-right: none;
+            border-top: none;
+        }
+
+        .strat-tab:hover {
+            color: var(--ink);
+        }
+
+        .strat-tab.active {
+            color: var(--crimson);
+            border-bottom-color: var(--crimson);
+        }
+
+        .strat-panel {
+            display: none;
+            animation: fadeIn 0.35s ease;
+        }
+
+        .strat-panel.active {
+            display: block;
+        }
+
+        .strat-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 60px;
+        }
+
+        .strat-body h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.45rem;
+            font-weight: 700;
+            margin-bottom: 22px;
+            color: var(--ink);
+        }
+
+        .strat-body p {
+            margin-bottom: 18px;
+            font-size: 1rem;
+        }
+
+        .strat-photo {
+            margin-bottom: 24px;
+        }
+
+        .strat-photo img {
+            width: 100%;
+            display: block;
+            filter: sepia(15%) contrast(1.06);
+            border: 1px solid var(--cream-deep);
+        }
+
+        .strat-photo-cap {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 0.57rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-top: 6px;
+        }
+
+        .strat-aside {
+            background: var(--cream-dark);
+            padding: 28px;
+            border: 1px solid var(--cream-deep);
+        }
+
+        .aside-lbl {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 0.57rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 10px;
+        }
+
+        .aside-fact {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1rem;
+            color: var(--ink-soft);
+            line-height: 1.5;
+            margin-bottom: 18px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid var(--cream-deep);
+        }
+
+        .aside-fact:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        /* ── IMPACT ── */
+        #impact {
+            background: var(--cream-dark);
+        }
+
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2px;
+            margin: 52px 0;
+        }
+
+        .metric {
+            background: var(--crimson);
+            padding: 44px 28px;
+            text-align: center;
+        }
+
+        .metric-n {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.2rem;
+            font-weight: 900;
+            color: var(--cream);
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .metric-l {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 0.62rem;
+            letter-spacing: 0.17em;
+            text-transform: uppercase;
+            color: rgba(253, 246, 232, 0.58);
+            line-height: 1.5;
+        }
+
+        .impact-body p {
+            margin-bottom: 22px;
+            font-size: 1.04rem;
+            max-width: 760px;
+        }
+
+        /* ── MODERN ── */
+        #modern {
+            background: var(--slate);
+            color: var(--cream);
+        }
+
+        #modern .section-title {
+            color: var(--cream);
+        }
+
+        .modern-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+            margin-top: 52px;
+        }
+
+        .mod-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(253, 246, 232, 0.1);
+            padding: 32px 26px;
+            transition: all 0.3s;
+        }
+
+        .mod-card:hover {
+            background: rgba(255, 255, 255, 0.09);
+            border-color: rgba(253, 246, 232, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .mod-icon {
+            font-size: 1.8rem;
+            margin-bottom: 14px;
+        }
+
+        .mod-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--cream);
+            margin-bottom: 12px;
+        }
+
+        .mod-card p {
+            font-size: 0.88rem;
+            color: rgba(253, 246, 232, 0.58);
+            line-height: 1.65;
+        }
+
+        /* ── REFLECTION ── */
+        #reflection {
+            background: var(--cream);
+        }
+
+        .ref-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 44px;
+            margin-top: 52px;
+        }
+
+        .ref-card {
+            background: var(--cream-dark);
+            padding: 36px;
+            border-left: 4px solid var(--slate);
+        }
+
+        .ref-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--slate);
+            margin-bottom: 18px;
+        }
+
+        .ref-card p {
+            font-size: 0.96rem;
+            line-height: 1.7;
+        }
+
+        /* ── QUIZ ── */
+        #quiz {
+            background: var(--cream-dark);
+            padding: 96px 0;
+        }
+
+        .quiz-inner {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 0 48px;
+        }
+
+        .quiz-prog {
+            height: 3px;
+            background: var(--cream-deep);
+            margin-bottom: 52px;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .quiz-bar {
+            height: 100%;
+            background: var(--crimson);
+            transition: width 0.5s ease;
+            border-radius: 2px;
+        }
+
+        .quiz-q {
+            display: none;
+        }
+
+        .quiz-q.active {
+            display: block;
+        }
+
+        .q-num {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 0.62rem;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 14px;
+        }
+
+        .q-txt {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 32px;
+            line-height: 1.3;
+        }
+
+        .q-opts {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 28px;
+        }
+
+        .q-opt {
+            padding: 16px 22px;
+            border: 2px solid var(--cream-deep);
+            background: var(--cream);
+            cursor: pointer;
+            font-family: 'Crimson Pro', serif;
+            font-size: 1rem;
+            text-align: left;
+            color: var(--ink);
+            transition: all 0.25s;
+        }
+
+        .q-opt:hover {
+            border-color: var(--crimson-lt);
+        }
+
+        .q-opt.correct {
+            border-color: var(--slate);
+            background: rgba(44, 62, 80, 0.08);
+            color: var(--slate);
+        }
+
+        .q-opt.wrong {
+            border-color: var(--crimson);
+            background: rgba(107, 15, 26, 0.07);
+            color: var(--crimson);
+        }
+
+        .q-fb {
+            padding: 18px 22px;
+            background: var(--cream);
+            border: 1px solid var(--cream-deep);
+            font-size: 0.93rem;
+            line-height: 1.6;
+            display: none;
+            margin-bottom: 22px;
+        }
+
+        .q-fb.show {
+            display: block;
+        }
+
+        .q-next {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 0.67rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            padding: 13px 30px;
+            background: var(--crimson);
+            color: var(--cream);
+            border: none;
+            cursor: pointer;
+            display: none;
+            transition: background 0.25s;
+        }
+
+        .q-next.show {
+            display: inline-block;
+        }
+
+        .q-next:hover {
+            background: var(--crimson-mid);
+        }
+
+        .quiz-score {
+            display: none;
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .score-n {
+            font-family: 'Playfair Display', serif;
+            font-size: 5.5rem;
+            font-weight: 900;
+            color: var(--crimson);
+            line-height: 1;
+        }
+
+        .quiz-score p {
+            font-size: 1.05rem;
+            margin-top: 20px;
+            color: var(--ink-soft);
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            background: var(--crimson);
+            color: rgba(253, 246, 232, 0.65);
+            padding: 60px 48px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 48px;
+        }
+
+        .footer-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.7rem;
+            font-weight: 900;
+            font-style: italic;
+            color: var(--cream);
+            margin-bottom: 14px;
+        }
+
+        footer h4 {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 0.6rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: rgba(253, 246, 232, 0.38);
+            margin-bottom: 16px;
+        }
+
+        footer p,
+        footer a {
+            font-size: 0.86rem;
+            line-height: 1.8;
+            display: block;
+            color: rgba(253, 246, 232, 0.58);
+            text-decoration: none;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(22px);
+            }
+
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes bob {
+
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            50% {
+                transform: translateX(-50%) translateY(8px);
+            }
+        }
+
+        @media (max-width: 920px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-right {
+                display: none;
+            }
+
+            nav {
+                padding: 14px 20px;
+            }
+
+            .nav-links {
+                gap: 12px;
+            }
+
+            .container,
+            .timeline-wrap,
+            .quiz-inner {
+                padding: 0 20px;
+            }
+
+            .context-grid,
+            .obs-grid,
+            .modern-grid,
+            .ref-grid,
+            .metrics {
+                grid-template-columns: 1fr;
+            }
+
+            .bio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .bio-photo-wrap {
+                position: static;
+            }
+
+            .ps-layout,
+            .strat-layout {
+                grid-template-columns: 1fr;
+            }
+
+            footer {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <span class="nav-brand">Lucy Stone</span>
+        <ul class="nav-links">
+            <li><a href="#biography">Biography</a></li>
+            <li><a href="#timeline">Timeline</a></li>
+            <li><a href="#primary-source">Primary Source</a></li>
+            <li><a href="#strategies">Strategies</a></li>
+            <li><a href="#impact">Impact</a></li>
+            <li><a href="#quiz">Quiz</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-left">
+            <p class="hero-eyebrow">American Reformer · Abolitionist · Suffragist</p>
+            <h1 class="hero-name">Lucy<em>Stone</em></h1>
+            <p class="hero-dates">1818 — 1893</p>
+            <div class="hero-quote-block">
+                <p class="hero-quote">"In education, in marriage, in religion, in everything, disappointment is the lot
+                    of woman."</p>
+                <p class="hero-quote-attr">— Lucy Stone, 1855</p>
+            </div>
+        </div>
+        <div class="hero-right">
+            <div class="hero-photo-frame">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Sm_lucy_stone_3d02055r.jpg/500px-Sm_lucy_stone_3d02055r.jpg"
+                    onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/HOWS_V2_D0816_Lucy_Stone.png/400px-HOWS_V2_D0816_Lucy_Stone.png'" />
+                <p class="hero-photo-label">Lucy Stone · Photograph c. 1850–1870 · Library of Congress</p>
+            </div>
+            <div class="scroll-cue" onclick="document.getElementById('context').scrollIntoView({behavior:'smooth'})">
+                <span>Explore</span>
+                <div class="scroll-cue-line"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTEXT -->
+    <section id="context">
+        <div class="container">
+            <p class="section-label">Historical Context</p>
+            <h2 class="section-title">America in the Age of Reform</h2>
+            <p>The mid-19th century was a crucible of injustice and change. Click each card to understand the world Lucy
+                Stone fought to reshape.</p>
+            <div class="context-grid">
+                <div class="ctx-card">
+                    <div class="ctx-year">1820s</div>
+                    <div class="ctx-title">Coverture & Legal Erasure</div>
+                    <p>Under English common law still operative in the U.S., a married woman had no independent legal
+                        identity. She could not own property, sign contracts, keep her wages, or retain custody of
+                        children. She was legally "covered" by her husband — ceasing to exist as a legal person.</p>
+                </div>
+                <div class="ctx-card">
+                    <div class="ctx-year">1830s</div>
+                    <div class="ctx-title">The Abolitionist Movement</div>
+                    <p>The American Anti-Slavery Society (1833) energized a generation of reformers. Women like the
+                        Grimké sisters faced censure simply for speaking to mixed-gender audiences. The injustices of
+                        race and gender became deeply intertwined — and Stone would link them deliberately.</p>
+                </div>
+                <div class="ctx-card">
+                    <div class="ctx-year">1840s</div>
+                    <div class="ctx-title">Higher Education Denied</div>
+                    <p>Almost no institutions admitted women. Oberlin College was a rare exception — but female students
+                        were expected to wash male students' laundry and were barred from speaking at commencement.
+                        Stone had to fight even at the "progressive" school.</p>
+                </div>
+                <div class="ctx-card">
+                    <div class="ctx-year">1848</div>
+                    <div class="ctx-title">Seneca Falls Convention</div>
+                    <p>The first Women's Rights Convention, organized by Stanton and Mott, issued the Declaration of
+                        Sentiments — modeled on the Declaration of Independence — demanding equal rights including
+                        suffrage. This galvanized the movement and created a national vocabulary for women's claims.</p>
+                </div>
+                <div class="ctx-card">
+                    <div class="ctx-year">1850s</div>
+                    <div class="ctx-title">Slavery's Expanding Crisis</div>
+                    <p>The Fugitive Slave Act and the Kansas-Nebraska Act inflamed tensions. Many women's rights
+                        activists were ardent abolitionists — Stone among them — seeing both struggles as rooted in the
+                        denial of personhood. The two reform movements borrowed strategy from each other.</p>
+                </div>
+                <div class="ctx-card">
+                    <div class="ctx-year">1860s</div>
+                    <div class="ctx-title">Post-War Betrayal</div>
+                    <p>After the Civil War, the 14th and 15th Amendments introduced "male" into the Constitution for the
+                        first time and granted suffrage to Black men — but not women. This fractured the women's rights
+                        movement between those who accepted this step and those who refused.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BIOGRAPHY -->
+    <section id="biography">
+        <div class="container">
+            <p class="section-label">Background & Biography</p>
+            <h2 class="section-title">Who Was Lucy Stone?</h2>
+            <div class="bio-grid">
+                <div class="bio-photo-wrap">
+                    <img src="https://www.bwht.org/wp-content/uploads/Lucy-Stone-1.jpg"
+                        onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Lucy_Stone_%28Blackwell%29_A77-117-1.jpg/400px-Lucy_Stone_%28Blackwell%29_A77-117-1.jpg'" />
+                    <p class="bio-photo-caption">Photograph by Sumner Bradley Heald<br>c. 1866 · National Portrait
+                        Gallery</p>
+                    <div class="bio-stats">
+                        <div class="bio-stat">
+                            <div class="bio-stat-lbl">Born</div>
+                            <div class="bio-stat-val">August 13, 1818 · West Brookfield, MA</div>
+                        </div>
+                        <div class="bio-stat">
+                            <div class="bio-stat-lbl">Education</div>
+                            <div class="bio-stat-val">Oberlin College, B.A. 1847</div>
+                        </div>
+                        <div class="bio-stat">
+                            <div class="bio-stat-lbl">Known For</div>
+                            <div class="bio-stat-val">Abolitionism, Suffrage, Keeping Maiden Name</div>
+                        </div>
+                        <div class="bio-stat">
+                            <div class="bio-stat-lbl">Died</div>
+                            <div class="bio-stat-val">October 18, 1893 · Dorchester, MA</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bio-body">
+                    <p>Lucy Stone grew up on a farm in rural Massachusetts, the eighth of nine children. From childhood,
+                        she witnessed the unequal treatment of women firsthand — watching her mother work exhausting
+                        hours without legal rights over the farm's profits, property, or even her own children. Her
+                        father embodied the era's assumption that women existed to serve men's needs. A young Lucy Stone
+                        burned with quiet fury.</p>
+                    <div class="bio-pull">"I was a woman before I was an abolitionist. I must speak for the women."
+                    </div>
+                    <p>She worked as a schoolteacher for nine years to save money for college — earning far less than
+                        male teachers doing identical work. At 25, she enrolled at Oberlin College, one of the only
+                        institutions that accepted women. Even there, the fight was never over: she was refused the
+                        right to read her commencement essay aloud because women were not permitted to speak publicly
+                        before male audiences. She refused to write it at all rather than have a man deliver her words.
+                    </p>
+                    <p>After graduating in 1847, Stone threw herself into lecturing — first for the American
+                        Anti-Slavery Society, then increasingly for women's rights. She became one of the most famous
+                        and electrifying public speakers in America. Mobs pelted her with cold water and books. She
+                        continued speaking.</p>
+                    <p>In 1855, she married abolitionist Henry Blackwell under a formal written protest against marriage
+                        laws that stripped women of their rights — and she kept her surname, becoming the first notable
+                        American woman to do so. Women who followed her example were known for decades as "Lucy
+                        Stoners."</p>
+                    <div class="divider">
+                        <div class="divider-line"></div><span class="divider-orn">✦</span>
+                        <div class="divider-line"></div>
+                    </div>
+                    <p>Stone co-founded the American Woman Suffrage Association in 1869 and launched <em>The Woman's
+                            Journal</em> in 1870 — editing it for over two decades, making it the most important
+                        suffrage newspaper in American history. She worked tirelessly until her death in 1893, never
+                        seeing the 19th Amendment she helped make inevitable. It passed 27 years later.</p>
+                    <p><span class="tag tag-r">Abolitionism</span><span class="tag tag-r">Women's Suffrage</span><span
+                            class="tag tag-s">Education Reform</span><span class="tag tag-s">Equal Pay</span><span
+                            class="tag tag-m">Free Speech</span><span class="tag tag-m">Legal Reform</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section id="timeline">
+        <div class="container" style="padding-bottom:0">
+            <p class="section-label">Interactive Timeline</p>
+            <h2 class="section-title">A Life of Radical Action</h2>
+            <p style="color:var(--muted);font-size:0.9rem;margin-top:-30px;">Events animate as you scroll down the page.
+            </p>
+        </div>
+        <div class="timeline-wrap">
+            <div class="tl-spine"></div>
+
+            <div class="tl-event">
+                <div class="tl-card left">
+                    <div class="tl-year">1818</div>
+                    <div class="tl-title">Born on Coy's Hill</div>
+                    <p class="tl-desc">Lucy Stone is born in West Brookfield, Massachusetts. Her mother's exhausted
+                        words — "Oh dear, I am so sorry it is a girl" — will haunt and fuel Stone's entire life's work.
+                    </p>
+                </div>
+                <div class="tl-dot"></div>
+                <div></div>
+            </div>
+
+            <div class="tl-event">
+                <div></div>
+                <div class="tl-dot"></div>
+                <div class="tl-card right">
+                    <div class="tl-year">1839–1843</div>
+                    <div class="tl-title">Teaching to Save for College</div>
+                    <p class="tl-desc">Stone works as a schoolteacher earning a fraction of what male teachers earned
+                        for the same work. She saves every cent toward a college education her own father believed was
+                        unnecessary for a woman.</p>
+                </div>
+            </div>
+
+            <div class="tl-event">
+                <div class="tl-card left">
+                    <div class="tl-year">1843</div>
+                    <div class="tl-title">Enrolls at Oberlin College</div>
+                    <p class="tl-desc">At 25, Stone becomes one of the few women in America studying for a full liberal
+                        arts degree. She discovers even Oberlin isn't the promised land — women are expected to clean
+                        for male students and are silenced in public forums.</p>
+                </div>
+                <div class="tl-dot"></div>
+                <div></div>
+            </div>
+
+            <div class="tl-event">
+                <div></div>
+                <div class="tl-dot"></div>
+                <div class="tl-card right">
+                    <div class="tl-year">1847</div>
+                    <div class="tl-title">Graduates — Refuses Commencement Essay</div>
+                    <p class="tl-desc">Stone becomes the first Massachusetts woman to earn a college degree. When
+                        selected to write a commencement essay, she refuses — a male professor would have to read it
+                        aloud. She would not be silenced by proxy.</p>
+                </div>
+            </div>
+
+            <div class="tl-event">
+                <div class="tl-card left">
+                    <div class="tl-year">1850</div>
+                    <div class="tl-title">First National Women's Rights Convention</div>
+                    <p class="tl-desc">Stone organizes the first National Women's Rights Convention in Worcester, MA.
+                        Her speech is reprinted in the international press. She articulates women's rights as
+                        fundamental human liberty.</p>
+                </div>
+                <div class="tl-dot"></div>
+                <div></div>
+            </div>
+
+            <div class="tl-event">
+                <div></div>
+                <div class="tl-dot"></div>
+                <div class="tl-card right">
+                    <div class="tl-year">1855</div>
+                    <div class="tl-title">The Protest Marriage</div>
+                    <p class="tl-desc">Stone marries Henry Blackwell in a ceremony including a formal written protest
+                        against marriage laws. She keeps her surname. "Lucy Stoner" becomes a term for women who do the
+                        same for over a century.</p>
+                </div>
+            </div>
+
+            <div class="tl-event">
+                <div class="tl-card left">
+                    <div class="tl-year">1858</div>
+                    <div class="tl-title">Tax Resistance</div>
+                    <p class="tl-desc">Stone refuses to pay property taxes, invoking "no taxation without
+                        representation." Authorities seize her furniture, kitchen utensils, even her baby's cradle. She
+                        invites the press. The country takes notice.</p>
+                </div>
+                <div class="tl-dot"></div>
+                <div></div>
+            </div>
+
+            <div class="tl-event">
+                <div></div>
+                <div class="tl-dot"></div>
+                <div class="tl-card right">
+                    <div class="tl-year">1869</div>
+                    <div class="tl-title">Founds the AWSA</div>
+                    <p class="tl-desc">Stone co-founds the American Woman Suffrage Association with Julia Ward Howe. The
+                        AWSA pursues state-by-state wins and maintains alliances with Black civil rights leaders — a
+                        principled contrast to rivals who sometimes used racist arguments.</p>
+                </div>
+            </div>
+
+            <div class="tl-event">
+                <div class="tl-card left">
+                    <div class="tl-year">1870</div>
+                    <div class="tl-title">Launches <em>The Woman's Journal</em></div>
+                    <p class="tl-desc">Stone co-founds and edits the most durable suffrage newspaper in American history
+                        — running continuously for 47 years and becoming the movement's primary published voice long
+                        after Stone's death.</p>
+                </div>
+                <div class="tl-dot"></div>
+                <div></div>
+            </div>
+
+            <div class="tl-event">
+                <div></div>
+                <div class="tl-dot"></div>
+                <div class="tl-card right">
+                    <div class="tl-year">1890</div>
+                    <div class="tl-title">Merger: NAWSA</div>
+                    <p class="tl-desc">Stone helps broker the merger of the rival AWSA and NWSA into the National
+                        American Woman Suffrage Association. She is 72 years old and still working. Her daughter Alice
+                        plays a key role in healing the factions.</p>
+                </div>
+            </div>
+
+            <div class="tl-event">
+                <div class="tl-card left">
+                    <div class="tl-year">1893</div>
+                    <div class="tl-title">Final Words: "Make the World Better"</div>
+                    <p class="tl-desc">Lucy Stone dies October 18, 1893. Her final whispered words to her daughter:
+                        "Make the world better." She is cremated — itself radical for the era. The 19th Amendment she
+                        fought for would pass 27 years later.</p>
+                </div>
+                <div class="tl-dot"></div>
+                <div></div>
+            </div>
+
+            <div class="tl-event">
+                <div></div>
+                <div class="tl-dot slate"></div>
+                <div class="tl-card right" style="border-top:4px solid var(--slate)">
+                    <div class="tl-year" style="color:var(--slate)">1920</div>
+                    <div class="tl-title">The 19th Amendment — Victory She Never Saw</div>
+                    <p class="tl-desc">The 19th Amendment grants American women the right to vote — the culmination of
+                        72 years of organized activism that Lucy Stone helped ignite. Her daughter Alice Stone Blackwell
+                        witnesses the ratification.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRIMARY SOURCE -->
+    <section id="primary-source">
+        <div class="container">
+            <p class="section-label">Primary Source</p>
+            <div class="ps-layout">
+                <div>
+                    <div class="ps-doc">
+                        <div class="ps-doc-head">
+                            <div class="ps-doc-title">Marriage Protest of Lucy Stone and Henry B. Blackwell</div>
+                            <div class="ps-doc-sub">Read Aloud at Their Wedding Ceremony · May 1, 1855</div>
+                        </div>
+                        <div class="ps-doc-body">
+                            <p>While acknowledging our mutual affection by publicly assuming the relationship of husband
+                                and wife, yet in justice to ourselves and a great principle, we deem it a duty to
+                                declare that this act on our part implies no sanction of, nor promise of voluntary
+                                obedience to such of the present laws of marriage, as refuse to recognize the wife as an
+                                independent, rational being...</p>
+                            <div class="hi-passage" onclick="toggleAnno('a1')">
+                                <p>...while they confer upon the husband an injurious and unnatural superiority,
+                                    investing him with legal powers which no honorable man would exercise, and which no
+                                    man should possess.</p>
+                                <div class="annotation" id="a1"><strong>📌 Historian's Note:</strong> Stone and
+                                    Blackwell are targeting "coverture" — the doctrine that merged a woman's identity
+                                    into her husband's. Cleverly, they argue against a power that corrupts men who hold
+                                    it — a savvy appeal to male readers and audiences of the day.</div>
+                            </div>
+                            <p>We believe that personal independence and equal human rights can never be forfeited,
+                                except for crime; that marriage should be an equal and permanent partnership...</p>
+                            <div class="hi-passage" onclick="toggleAnno('a2')">
+                                <p>...and so recognized by law; that until it is so recognized, married partners should
+                                    provide against the radical injustice of present laws, by every means in their
+                                    power.</p>
+                                <div class="annotation" id="a2"><strong>📌 Historian's Note:</strong> "By every means in
+                                    their power" is deliberately broad — echoing abolitionist rhetoric and signaling
+                                    that Stone viewed legal civil disobedience (like her later tax protest) as a moral
+                                    duty, not merely a tactic.</div>
+                            </div>
+                            <div class="hi-passage" onclick="toggleAnno('a3')">
+                                <p>Thus reverencing law, we enter our protest against rules and customs which are
+                                    unworthy of the name, since they violate justice, the essence of law.</p>
+                                <div class="annotation" id="a3"><strong>📌 Historian's Note:</strong> Stone and
+                                    Blackwell claim to be the true defenders of law by opposing laws that violate
+                                    justice. This reframes the radicals as the constitutionalists — a rhetorical move
+                                    that civil rights movements would use for the next 150 years.</div>
+                            </div>
+                            <p style="margin-top:20px;font-size:0.82rem;color:var(--muted);font-style:italic;">Published
+                                in The Worcester Spy, The New York Tribune, and other newspapers, May 1855.<br>Click the
+                                highlighted passages to reveal historian's annotations.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="ps-analysis">
+                    <p class="section-label" style="color:rgba(253,246,232,0.4)">Analyze the Document</p>
+                    <h2 class="section-title">Decoding the Protest</h2>
+                    <p>This document was immediately reprinted across the country. It was radical, and it was
+                        calculated. Click each question to explore deeper.</p>
+                    <div class="ps-q" onclick="togglePSQ(this)">
+                        <p class="ps-qt">Why publish a wedding protest in a newspaper?</p>
+                        <p class="ps-qa">Stone understood that personal acts could become political tools. By inviting
+                            press coverage, she transformed a private ceremony into a public statement — reaching far
+                            more people than any lecture. She was performing a model of what marriage could look like,
+                            not just arguing against what it was.</p>
+                    </div>
+                    <div class="ps-q" onclick="togglePSQ(this)">
+                        <p class="ps-qt">Why did keeping her surname matter legally?</p>
+                        <p class="ps-qa">Under coverture law, a married woman's legal identity was absorbed into her
+                            husband's. Keeping her name was a direct, daily, visible act of resistance — forcing legal
+                            and social confrontations every time she signed a document. It made the abstract injustice
+                            of coverture concrete and personal for every observer.</p>
+                    </div>
+                    <div class="ps-q" onclick="togglePSQ(this)">
+                        <p class="ps-qt">Who was the target audience?</p>
+                        <p class="ps-qa">Multiple audiences simultaneously: reformers who would be energized; the
+                            newspaper-reading public whose opinion Stone was shaping; lawmakers who needed to see the
+                            injustice named and documented; and women trapped in difficult marriages — she named their
+                            experience as injustice, not just their lot in life.</p>
+                    </div>
+                    <div class="ps-q" onclick="togglePSQ(this)">
+                        <p class="ps-qt">How does this connect to abolitionism?</p>
+                        <p class="ps-qa">Stone saw slavery and the legal subjugation of married women as rooted in the
+                            same logic: that some human beings could be legally controlled by others. The protest's
+                            language of "personal independence" and "equal human rights" that "can never be forfeited"
+                            intentionally echoed abolitionist rhetoric, linking the two causes.</p>
+                    </div>
+                    <div class="ps-photo-wrap">
+                        <img src="https://blogs.loc.gov/loc/files/2020/04/Blackwell-foto-3.png"
+                            onerror="this.style.display='none'" />
+                        <p class="ps-photo-cap">Lucy Stone with daughter Alice Stone Blackwell · Library of Congress</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OBSTACLES -->
+    <section id="obstacles">
+        <div class="container">
+            <p class="section-label">Obstacles Faced</p>
+            <h2 class="section-title">The Walls She Broke Through</h2>
+            <div class="obs-grid">
+                <div class="obs-item" data-n="01">
+                    <div class="obs-title">Legal Invisibility</div>
+                    <p class="obs-text">Coverture law meant married women had no legal standing — no right to own
+                        property, sign contracts, keep wages, or retain custody of children. Stone operated in a legal
+                        system designed to treat her as property rather than a person, fighting injustices that weren't
+                        even recognized as injustices by most of her society.</p>
+                </div>
+                <div class="obs-item" data-n="02">
+                    <div class="obs-title">Violence & Mob Intimidation</div>
+                    <p class="obs-text">When Stone lectured, she faced not just heckling but physical intimidation —
+                        crowds pelting her with objects, churches refusing her halls, newspapers calling her "unsexed"
+                        and "unwomanly." She delivered speeches while cold water was poured on her through windows. She
+                        did not stop.</p>
+                </div>
+                <div class="obs-item" data-n="03">
+                    <div class="obs-title">Movement Fractures</div>
+                    <p class="obs-text">After the Civil War, the women's rights movement split bitterly over the 15th
+                        Amendment. Stone's AWSA supported Black male suffrage as a moral priority; Stanton and Anthony's
+                        NWSA opposed it, sometimes using explicitly racist arguments. Stone was caught between
+                        principled alliance-building and a fractured coalition.</p>
+                </div>
+                <div class="obs-item" data-n="04">
+                    <div class="obs-title">Institutional Exclusion</div>
+                    <p class="obs-text">Even at Oberlin — the most progressive college in America — women were barred
+                        from public speaking and expected to serve male students. The legal profession, the clergy, and
+                        politics were entirely closed. Every institution Stone entered required her to fight simply to
+                        remain and be heard.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STRATEGIES -->
+    <section id="strategies">
+        <div class="container">
+            <p class="section-label">Action Plan & Strategies</p>
+            <h2 class="section-title">How She Fought</h2>
+            <div class="strat-tabs">
+                <button class="strat-tab active" onclick="switchTab(this,'speaking')">Public Speaking</button>
+                <button class="strat-tab" onclick="switchTab(this,'press')">Press & Publishing</button>
+                <button class="strat-tab" onclick="switchTab(this,'civil')">Civil Disobedience</button>
+                <button class="strat-tab" onclick="switchTab(this,'organizing')">Organizing</button>
+            </div>
+            <div class="strat-panel active" id="speaking">
+                <div class="strat-layout">
+                    <div class="strat-body">
+                        <h3>The Lyceum Circuit: Making the Radical Audible</h3>
+                        <p>Stone's primary weapon was her voice. In an era before radio or television, the lyceum
+                            lecture circuit was the mass media of its day — traveling speakers drew enormous audiences
+                            hungry for ideas and debate.</p>
+                        <p>Stone became one of the most sought-after lecturers in America. She charged admission — both
+                            funding her activism and demonstrating that women's ideas had market value. Her speeches
+                            were reported in newspapers across the country, multiplying her reach far beyond any
+                            physical audience.</p>
+                        <p>Crucially, Stone refused to separate abolition from women's rights — even when the
+                            Anti-Slavery Society tried to limit her to their specific cause. She insisted on speaking
+                            about both, integrating the two reform movements rhetorically and practically.</p>
+                        <p><strong>Target Audience:</strong> The broad American public — voters, legislators, and
+                            especially women who had been told their experience of injustice was natural and inevitable.
+                        </p>
+                    </div>
+                    <div>
+                        <div class="strat-photo">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Lucy_stone.jpg/500px-Lucy_stone.jpg"
+                                onerror="this.style.display='none'" />
+                            <p class="strat-photo-cap">Speaking announcement, 1866 · Wikimedia Commons</p>
+                        </div>
+                        <div class="strat-aside">
+                            <div class="aside-lbl">By the Numbers</div>
+                            <div class="aside-fact">Stone lectured across nearly every Northern state, often delivering
+                                multiple speeches per week for years at a stretch.</div>
+                            <div class="aside-fact">She earned enough from lecturing to fund her activism independently
+                                — unusual financial autonomy for any woman of the era.</div>
+                            <div class="aside-fact">A single Stone lecture could be reported in a dozen newspapers,
+                                multiplying her audience exponentially.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="strat-panel" id="press">
+                <div class="strat-layout">
+                    <div class="strat-body">
+                        <h3>The Woman's Journal: Building a Permanent Voice</h3>
+                        <p>Stone understood that lectures were ephemeral — a published newspaper was permanent. In 1870,
+                            she co-founded <em>The Woman's Journal</em>, which ran continuously for 47 years and became
+                            the longest-running and most influential suffrage publication in American history.</p>
+                        <p>The Journal documented the movement's progress, published legal analyses of unjust laws,
+                            printed women's own testimony, and kept suffrage visible in living rooms across America week
+                            after week. It was a machine for maintaining public momentum.</p>
+                        <p>Stone also understood the power of framing. Her wedding protest was deliberately sent to
+                            major newspapers. Her tax resistance was performed publicly, ensuring coverage that turned a
+                            personal act into a national story.</p>
+                    </div>
+                    <div class="strat-aside">
+                        <div class="aside-lbl">Key Facts</div>
+                        <div class="aside-fact"><em>The Woman's Journal</em> ran from 1870 to 1917 — 47 years,
+                            outlasting Stone by 24 years.</div>
+                        <div class="aside-fact">Stone's daughter Alice continued editing it after her mother's death,
+                            providing crucial continuity.</div>
+                        <div class="aside-fact">The paper was later absorbed into <em>The Woman Citizen</em>, which
+                            continued into the 1920s.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="strat-panel" id="civil">
+                <div class="strat-layout">
+                    <div class="strat-body">
+                        <h3>Making Injustice Visible Through Defiance</h3>
+                        <p>Stone was a pioneer of strategic civil disobedience decades before it became a recognized
+                            political tactic. In 1858, she refused to pay property taxes on her New Jersey home, arguing
+                            "no taxation without representation."</p>
+                        <p>The tax collector seized her household goods — furniture, kitchen utensils, even her baby
+                            daughter's cradle and her husband's books. Stone invited the press. The image of a nursing
+                            mother's cradle hauled away was powerful, and national newspapers ran the story.</p>
+                        <p>Her marriage itself was civil disobedience — performed publicly, with a formal written
+                            protest, to make visible the unjust laws everyone else silently accepted. She was not just
+                            objecting; she was performing the objection for maximum public impact.</p>
+                    </div>
+                    <div class="strat-aside">
+                        <div class="aside-lbl">The Tax Resistance</div>
+                        <div class="aside-fact">Stone's 1858 tax protest predated the organized tax resistance of the
+                            British suffragettes by nearly 50 years.</div>
+                        <div class="aside-fact">"No taxation without representation" carried particular weight — it was
+                            the founding principle of the American Revolution, now applied to half the population.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="strat-panel" id="organizing">
+                <div class="strat-layout">
+                    <div class="strat-body">
+                        <h3>Building Lasting Institutions</h3>
+                        <p>Stone recognized that individual activism could change minds, but institutions changed law.
+                            She helped organize the first national women's rights conventions, co-founded the American
+                            Woman Suffrage Association in 1869, and spent decades building the organizational
+                            infrastructure of the suffrage movement.</p>
+                        <p>Stone pursued a state-by-state strategy, believing that winning suffrage in individual states
+                            would build momentum and prove viability before a federal amendment. Wyoming, Colorado,
+                            Utah, and Idaho all granted women's suffrage in part because of this sustained organizing
+                            work.</p>
+                        <p>Stone also maintained crucial alliances — with abolitionist men, Black reformers, and
+                            Republican politicians — that kept the women's rights movement from becoming isolated. She
+                            understood that coalitions, however imperfect, were essential to legislative change.</p>
+                    </div>
+                    <div class="strat-aside">
+                        <div class="aside-lbl">Alliances Built</div>
+                        <div class="aside-fact">Stone maintained close ties with Frederick Douglass, who spoke at
+                            women's rights conventions and saw both causes as inseparable.</div>
+                        <div class="aside-fact">Her partnership with Julia Ward Howe brought prominent cultural figures
+                            into the suffrage movement, broadening its social legitimacy.</div>
+                        <div class="aside-fact">The AWSA's state-focused strategy laid crucial groundwork for the 19th
+                            Amendment's eventual passage.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- IMPACT -->
+    <section id="impact">
+        <div class="container">
+            <p class="section-label">Results & Long-Term Impact</p>
+            <h2 class="section-title">What She Changed</h2>
+            <div class="metrics">
+                <div class="metric">
+                    <div class="metric-n">47</div>
+                    <div class="metric-l">Years The Woman's Journal Ran</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-n">1920</div>
+                    <div class="metric-l">19th Amendment — 27 Years After Her Death</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-n">4+</div>
+                    <div class="metric-l">States Won Women's Suffrage in Her Lifetime</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-n">1st</div>
+                    <div class="metric-l">Massachusetts Woman to Earn a College Degree</div>
+                </div>
+            </div>
+            <div class="impact-body">
+                <p>Lucy Stone did not live to see the 19th Amendment — but the 19th Amendment could not have happened
+                    without her. She built the national organizations, the newspaper infrastructure, the public
+                    consciousness, and the legal-challenge tradition that made it possible.</p>
+                <p>Her state-by-state strategy proved correct: states that had already granted women's suffrage created
+                    the political pressure and legislative proof-of-concept that eventually compelled a federal
+                    amendment. <em>The Woman's Journal</em> she founded trained a generation of suffrage writers and
+                    editors, including her daughter Alice Stone Blackwell.</p>
+                <p>Her personal act of keeping her surname sparked a century-long practice among feminist women and
+                    seeded legal conversations that still echo in modern name-change debates. Perhaps most importantly,
+                    Stone demonstrated — through 46 years of public advocacy — that women could be powerful, persuasive,
+                    intellectually formidable public actors. Every woman who lectures, runs for office, or speaks in a
+                    public forum today is, in some measure, her heir.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODERN CONNECTIONS -->
+    <section id="modern">
+        <div class="container">
+            <p class="section-label" style="color:rgba(253,246,232,0.4)">Legacy & Modern Connections</p>
+            <h2 class="section-title">Her Work, Continued</h2>
+            <p style="color:rgba(253,246,232,0.58);max-width:660px;font-size:1rem;">Stone's methods and goals echo in
+                movements active today. The tools change; the fight continues.</p>
+            <div class="modern-grid">
+                <div class="mod-card">
+                    <div class="mod-icon">✊</div>
+                    <div class="mod-title">Equal Pay Advocacy</div>
+                    <p>Stone earned a fraction of male teachers' wages and made equal pay a core demand. Today
+                        organizations like the AAUW continue that work — the gender pay gap in 2025 still sits at
+                        roughly 84 cents per dollar. Her arguments from 1847 remain unanswered.</p>
+                </div>
+                <div class="mod-card">
+                    <div class="mod-icon">📰</div>
+                    <div class="mod-title">Women-Controlled Media</div>
+                    <p>Stone's <em>Woman's Journal</em> pioneered women-controlled media as advocacy. This tradition
+                        lives in <em>Ms. Magazine</em>, feminist podcasts, and digital outlets like The 19th — named in
+                        part for the amendment Stone's work made possible.</p>
+                </div>
+                <div class="mod-card">
+                    <div class="mod-icon">⚖️</div>
+                    <div class="mod-title">Legal Identity Rights</div>
+                    <p>Stone's maiden-name defiance sparked legal battles lasting a century. Some states still required
+                        court petitions for women to keep names in the 1970s. The Lucy Stone League — still active —
+                        continues fighting for legal name equality globally.</p>
+                </div>
+                <div class="mod-card">
+                    <div class="mod-icon">🗳️</div>
+                    <div class="mod-title">Stacey Abrams & Voting Rights</div>
+                    <p>Stone's state-by-state strategy mirrors Stacey Abrams's work in Georgia — building local
+                        infrastructure to register voters and challenge suppression, demonstrating in a single state
+                        what's possible everywhere. Both recognized that rights won locally build the case for rights
+                        won nationally.</p>
+                </div>
+                <div class="mod-card">
+                    <div class="mod-icon">📣</div>
+                    <div class="mod-title">Economic Leverage as Protest</div>
+                    <p>Stone's 1858 tax protest echoes in modern movements using economic pressure: divestment
+                        campaigns, boycotts, and targeted action against legislators who oppose gender equity — the same
+                        logic, updated for the 21st century.</p>
+                </div>
+                <div class="mod-card">
+                    <div class="mod-icon">🤝</div>
+                    <div class="mod-title">Intersectional Coalition Building</div>
+                    <p>Stone's insistence on maintaining alliances with Black reformers anticipates the intersectional
+                        feminism articulated by Kimberlé Crenshaw and practiced by organizations like the Black Women's
+                        Roundtable, which argues women's liberation is inseparable from racial justice.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REFLECTION -->
+    <section id="reflection">
+        <div class="container">
+            <p class="section-label">Critical Reflection</p>
+            <h2 class="section-title">Questions Worth Asking</h2>
+            <div class="ref-grid">
+                <div class="ref-card">
+                    <div class="ref-title">What Would You Have Done Differently?</div>
+                    <p>Stone's greatest tension was the post-Civil War split over the 15th Amendment. Stone supported
+                        Black male suffrage as a moral priority; her rivals opposed it, sometimes deploying racist
+                        arguments. Stone's approach was arguably more just — but it fractured the coalition. A different
+                        Stone might have found a path to support both causes without division. But in 1869, no such path
+                        was obvious to anyone.</p>
+                </div>
+                <div class="ref-card">
+                    <div class="ref-title">Was She Successful?</div>
+                    <p>By her own stated goals: partially. She did not live to see federal women's suffrage. But she
+                        built the institutions that achieved it. Yet: women vote, practice law, speak from every public
+                        platform, keep their names, own property, and sign contracts. Each of these was, in Stone's
+                        lifetime, illegal or forbidden. Success is not a moment — it is a direction she pointed.</p>
+                </div>
+                <div class="ref-card">
+                    <div class="ref-title">Blind Spots to Acknowledge</div>
+                    <p>Like most white reformers of her era, Stone was inconsistent on race. While she supported Black
+                        male suffrage and maintained friendships with Black abolitionists, she did not center Black
+                        women's specific double exclusion — by race and gender — in her advocacy. The movement she
+                        helped build was often hostile to Black women's full participation. Honest history requires
+                        naming this alongside her genuine achievements.</p>
+                </div>
+                <div class="ref-card">
+                    <div class="ref-title">What Her Work Tells Us Now</div>
+                    <p>Stone teaches us that individual courage — keeping a name, refusing to pay an unjust tax,
+                        continuing to speak while water is poured on you — is not separate from systemic change; it
+                        <em>is</em> systemic change, performed in public, piece by piece. And institutions outlast
+                        individuals. The newspaper she founded, the organizations she built, and the daughters she
+                        inspired outlasted her by decades. The most durable activism builds things that continue when
+                        you are gone.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section id="quiz">
+        <div class="quiz-inner">
+            <p class="section-label">Test Your Knowledge</p>
+            <h2 class="section-title" style="margin-bottom:36px">Lucy Stone Quiz</h2>
+            <div class="quiz-prog">
+                <div class="quiz-bar" id="qBar" style="width:0%"></div>
+            </div>
+            <div id="qContent">
+                <div class="quiz-q active" data-q="0">
+                    <p class="q-num">Question 1 of 5</p>
+                    <p class="q-txt">Why did Lucy Stone refuse to write her commencement essay at Oberlin College?</p>
+                    <div class="q-opts">
+                        <button class="q-opt" onclick="answer(this,false,0)">She hadn't finished writing it in
+                            time</button>
+                        <button class="q-opt" onclick="answer(this,true,0)">A male professor would have to read it aloud
+                            — she refused to have her words voiced by a man</button>
+                        <button class="q-opt" onclick="answer(this,false,0)">She disagreed with the topic she was
+                            assigned</button>
+                        <button class="q-opt" onclick="answer(this,false,0)">She was ill on commencement day</button>
+                    </div>
+                    <div class="q-fb" id="f0">Women were barred from speaking publicly at Oberlin's commencement — even
+                        to read their own work. Stone's refusal was principled: she would rather have no essay read than
+                        have a man voice her ideas. It was her first major public act of defiance.</div>
+                    <button class="q-next" id="n0" onclick="nextQ(1)">Next Question →</button>
+                </div>
+                <div class="quiz-q" data-q="1">
+                    <p class="q-num">Question 2 of 5</p>
+                    <p class="q-txt">What founding American principle did Stone's 1858 tax protest directly invoke?</p>
+                    <div class="q-opts">
+                        <button class="q-opt" onclick="answer(this,false,1)">Eminent domain</button>
+                        <button class="q-opt" onclick="answer(this,false,1)">Habeas corpus</button>
+                        <button class="q-opt" onclick="answer(this,true,1)">No taxation without representation</button>
+                        <button class="q-opt" onclick="answer(this,false,1)">Freedom of the press</button>
+                    </div>
+                    <div class="q-fb" id="f1">Stone invoked the same principle that justified the American Revolution —
+                        now applied to women who paid taxes but could not vote. Authorities seized her household goods,
+                        including her baby's cradle. She invited the press to witness it all.</div>
+                    <button class="q-next" id="n1" onclick="nextQ(2)">Next Question →</button>
+                </div>
+                <div class="quiz-q" data-q="2">
+                    <p class="q-num">Question 3 of 5</p>
+                    <p class="q-txt">What was the key strategic difference between Stone's AWSA and Stanton/Anthony's
+                        NWSA?</p>
+                    <div class="q-opts">
+                        <button class="q-opt" onclick="answer(this,false,2)">AWSA focused only on property rights; NWSA
+                            focused solely on voting</button>
+                        <button class="q-opt" onclick="answer(this,true,2)">AWSA pursued state-by-state wins and
+                            maintained abolitionist alliances; NWSA sought a federal amendment and opposed the 15th
+                            Amendment</button>
+                        <button class="q-opt" onclick="answer(this,false,2)">AWSA was based in the South; NWSA operated
+                            only in the North</button>
+                        <button class="q-opt" onclick="answer(this,false,2)">There was no meaningful difference — the
+                            split was purely personal</button>
+                    </div>
+                    <div class="q-fb" id="f2">Stone's AWSA believed in building state-by-state wins and maintaining
+                        coalitions with Black civil rights leaders. Stanton and Anthony's NWSA pursued a federal
+                        amendment and sometimes deployed racist arguments against Black male suffrage. The two merged in
+                        1890 to form NAWSA.</div>
+                    <button class="q-next" id="n2" onclick="nextQ(3)">Next Question →</button>
+                </div>
+                <div class="quiz-q" data-q="3">
+                    <p class="q-num">Question 4 of 5</p>
+                    <p class="q-txt">What were women who kept their maiden names after marriage called, in Stone's
+                        honor?</p>
+                    <div class="q-opts">
+                        <button class="q-opt" onclick="answer(this,false,3)">Stone Keepers</button>
+                        <button class="q-opt" onclick="answer(this,true,3)">Lucy Stoners</button>
+                        <button class="q-opt" onclick="answer(this,false,3)">Free Women</button>
+                        <button class="q-opt" onclick="answer(this,false,3)">Blackwell Women</button>
+                    </div>
+                    <div class="q-fb" id="f3">Women who kept their surnames after marriage were called "Lucy Stoners"
+                        for nearly a century. The Lucy Stone League, founded in 1921, continued fighting for women's
+                        right to keep their names — a battle that continued in American courts into the 1970s.</div>
+                    <button class="q-next" id="n3" onclick="nextQ(4)">Next Question →</button>
+                </div>
+                <div class="quiz-q" data-q="4">
+                    <p class="q-num">Question 5 of 5</p>
+                    <p class="q-txt">What were Lucy Stone's last recorded words to her daughter Alice?</p>
+                    <div class="q-opts">
+                        <button class="q-opt" onclick="answer(this,false,4)">"Never stop fighting."</button>
+                        <button class="q-opt" onclick="answer(this,false,4)">"I have done what I could."</button>
+                        <button class="q-opt" onclick="answer(this,true,4)">"Make the world better."</button>
+                        <button class="q-opt" onclick="answer(this,false,4)">"The vote will come."</button>
+                    </div>
+                    <div class="q-fb" id="f4">Stone's final whispered words were "Make the world better." Alice Stone
+                        Blackwell continued editing <em>The Woman's Journal</em> after her mother's death and lived to
+                        see the 19th Amendment ratified in 1920 — carrying out her mother's last instruction.</div>
+                    <button class="q-next" id="n4" onclick="showScore()">See Results →</button>
+                </div>
+            </div>
+            <div class="quiz-score" id="qScore">
+                <div class="score-n" id="sNum">0/5</div>
+                <p id="sMsg"></p>
+                <button class="q-next show" style="margin-top:28px" onclick="resetQuiz()">Try Again</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div>
+            <div class="footer-brand">Lucy Stone</div>
+            <p>An interactive exploration of America's most undersung suffragist — the woman who kept her name, raised
+                her voice, and changed the world.</p>
+        </div>
+        <div>
+            <h4>Key Sources</h4>
+            <a>Stone & Blackwell — Marriage Protest (1855)</a>
+            <a>Andrea Moore Kerr — Lucy Stone: Speaking Out for Equality (1992)</a>
+            <a>Sally G. McMillen — Lucy Stone: An Unapologetic Life (2015)</a>
+            <a>The Woman's Journal, 1870–1893</a>
+            <a>Library of Congress, Women's Suffrage Collection</a>
+        </div>
+        <div>
+            <h4>Further Exploration</h4>
+            <a>The Lucy Stone League (lucystoneleague.org)</a>
+            <a>National Women's History Museum (womenshistory.org)</a>
+            <a>Oberlin College Archives</a>
+            <a>Library of Congress (loc.gov)</a>
+        </div>
+    </footer>
+
+    <script>
+        function toggleAnno(id) { document.getElementById(id).classList.toggle('open'); }
+
+        function togglePSQ(el) {
+            const a = el.querySelector('.ps-qa');
+            const open = a.classList.contains('open');
+            document.querySelectorAll('.ps-qa').forEach(x => x.classList.remove('open'));
+            if (!open) a.classList.add('open');
+        }
+
+        function switchTab(btn, id) {
+            document.querySelectorAll('.strat-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.strat-panel').forEach(p => p.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById(id).classList.add('active');
+        }
+
+        const tlObs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.18 });
+        document.querySelectorAll('.tl-event').forEach(el => tlObs.observe(el));
+
+        let score = 0;
+        function answer(btn, correct, qi) {
+            btn.parentElement.querySelectorAll('.q-opt').forEach(o => { o.disabled = true; o.style.cursor = 'default'; });
+            btn.classList.add(correct ? 'correct' : 'wrong');
+            if (!correct) {
+                btn.parentElement.querySelectorAll('.q-opt').forEach(o => {
+                    if (o.getAttribute('onclick').includes('true')) o.classList.add('correct');
+                });
+            } else { score++; }
+            document.getElementById('f' + qi).classList.add('show');
+            document.getElementById('n' + qi).classList.add('show');
+            document.getElementById('qBar').style.width = ((qi + 1) / 5 * 100) + '%';
+        }
+        function nextQ(n) {
+            document.querySelectorAll('.quiz-q').forEach(q => q.classList.remove('active'));
+            document.querySelector('[data-q="' + n + '"]').classList.add('active');
+        }
+        function showScore() {
+            document.getElementById('qContent').style.display = 'none';
+            document.getElementById('qScore').style.display = 'block';
+            document.getElementById('qBar').style.width = '100%';
+            document.getElementById('sNum').textContent = score + '/5';
+            const msgs = ["Keep exploring — Stone's story rewards deeper study.", "Good start — revisit the timeline and primary source.", "Solid knowledge — you're getting to know Stone's world.", "Strong work — you understand her strategies and context.", "Excellent — you know Lucy Stone as she deserves to be known."];
+            document.getElementById('sMsg').textContent = msgs[score];
+        }
+        function resetQuiz() {
+            score = 0;
+            document.getElementById('qScore').style.display = 'none';
+            document.getElementById('qContent').style.display = 'block';
+            document.getElementById('qBar').style.width = '0%';
+            document.querySelectorAll('.quiz-q').forEach(q => {
+                q.classList.remove('active');
+                q.querySelectorAll('.q-opt').forEach(o => { o.classList.remove('correct', 'wrong'); o.disabled = false; o.style.cursor = 'pointer'; });
+                q.querySelectorAll('.q-fb').forEach(f => f.classList.remove('show'));
+                q.querySelectorAll('.q-next').forEach(n => n.classList.remove('show'));
+            });
+            document.querySelector('[data-q="0"]').classList.add('active');
+        }
+    </script>
+</body>
+
+</html>
